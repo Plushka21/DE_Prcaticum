@@ -163,6 +163,5 @@ namespace DE_Practicum
             chart3GTE.Series[2].Enabled = checkBox_RK.Checked;
         }
 
-        
     }
 }

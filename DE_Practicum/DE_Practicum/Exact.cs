@@ -7,26 +7,35 @@ using System.Windows.Forms;
 
 namespace DE_Practicum
 {
+    // Class to find values of exact solution 
     public class Exact : Grid
     {
+        // Array that will contain values y of a solution
+        public double[] y;
         public Exact(int N, double x0, double y0, double X) : base(N, x0, y0, X)
         {
-            try
+            y = new double[N];
+            for (int i = 0; i < N; i++)
             {
-                if (x0 == 0)
+                try
                 {
-                    throw new Exception();
+                    // x[i] cannot be zero because it is in denominator
+                    if (x[i] == 0)
+                    {
+                        throw new Exception();
+                    }
+                    // Otherwise find value y using exact solution
+                    else
+                    {
+                        y[i] = Math.Pow((Math.Sin(x[i]) + c) / (x[i]), 2);
+                    }
                 }
-                for (int i = 1; i < N; i++)
+                // Message that will appear in case x is negative number
+                catch
                 {
-                    y[i] = Math.Pow(((Math.Sin(x[i]) + c) / (x[i])), 2);
+                    MessageBox.Show("x cannot be 0.\n Change input please", "Error");
                 }
             }
-            catch
-            {
-                MessageBox.Show("x0 cannot be 0.\n Change input please", "Error");
-            }
-
         }
     }
 }
